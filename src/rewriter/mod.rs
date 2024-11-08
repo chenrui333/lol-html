@@ -154,6 +154,28 @@ macro_rules! guarded {
     }};
 }
 
+impl<'h, O: OutputSink> HtmlRewriter<'h, O, LocalHandlerTypes> {
+    /// Constructs a new rewriter with the provided `settings` that writes
+    /// the output to the `output_sink`.
+    ///
+    /// Same as [`HtmlRewriter::new()`], but always uses non-`Send` handlers.
+    #[inline]
+    pub fn new_local<'s>(settings: Settings<'h, 's, LocalHandlerTypes>, output_sink: O) -> Self {
+        Self::new(settings, output_sink)
+    }
+}
+
+impl<'h, O: OutputSink> HtmlRewriter<'h, O, SendHandlerTypes> {
+    /// Constructs a new rewriter with the provided `settings` that writes
+    /// the output to the `output_sink`.
+    ///
+    /// Same as [`HtmlRewriter::new()`], but always uses `Send`able handlers.
+    #[inline]
+    pub fn new_send<'s>(settings: Settings<'h, 's, SendHandlerTypes>, output_sink: O) -> Self {
+        Self::new(settings, output_sink)
+    }
+}
+
 impl<'h, O: OutputSink, H: HandlerTypes> HtmlRewriter<'h, O, H> {
     /// Constructs a new rewriter with the provided `settings` that writes
     /// the output to the `output_sink`.
