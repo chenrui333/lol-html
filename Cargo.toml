@@ -34,13 +34,14 @@ name = "bench"
 [dependencies]
 bitflags = "2.0.0"
 cfg-if = "1.0.0"
-cssparser = "0.29"
+cssparser = "0.34"
 encoding_rs = "0.8.13"
 memchr = "2.1.2"
 hashbrown = "0.15.0"
 mime = "0.3.16"
-selectors = "0.24"
+selectors = "0.26"
 thiserror = "2.0"
+precomputed-hash = "0.1.1"
 
 [dev-dependencies]
 criterion = "0.5.1"
